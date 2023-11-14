@@ -7,6 +7,7 @@ import { RegisterUserDto } from './dto/register-user.dto';
 import { JwtAuthGuard } from './guards/jwt.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { JwtPayloadInterface } from './interfaces/jwt-payload.interface';
+import { AuditLog } from 'src/common/decorators/audit-log.decorator';
 
 @ApiTags('Auth')
 @Controller({
@@ -17,6 +18,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
+  @AuditLog('Register')
   async register(@Body() registerUserDto: RegisterUserDto) {
     const payload = await this.authService.signUp(registerUserDto);
     return { message: 'Registered successfully!', payload };
