@@ -3,7 +3,7 @@ import { Exclude } from 'class-transformer';
 import { IsEmail, IsNotEmpty, IsString, MaxLength } from 'class-validator';
 
 export class LocalAuthUserDto {
-  @ApiProperty({ default: 'sadikuzzaman1996@gmail.com' })
+  @ApiProperty({ default: 'yopmail1@gmail.com' })
   @IsNotEmpty({ message: 'Must be non empty' })
   @IsEmail()
   @MaxLength(100, { message: 'Maximum 100 characters supported' })

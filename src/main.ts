@@ -22,24 +22,14 @@ async function bootstrap() {
       transformOptions: {
         enableImplicitConversion: true,
       },
-      // exception factory for custom validation error message as key value pair
-      // exceptionFactory: (validationErrors: ValidationError[] = []) => {
-      //   const response_data = {};
-      //   validationErrors.filter(function (values) {
-      //     response_data[values.property] = Object.keys(values.constraints).map(
-      //       (k) => values.constraints[k],
-      //     );
-      //   });
-      //   return new BadRequestException(response_data);
-      // },
     }),
   );
 
   const config = new DocumentBuilder()
-    .setTitle('Progress Tracker')
-    .setDescription('Progress Tracker API DOC')
+    .setTitle('Audit Log')
+    .setDescription('Audit Log API DOC')
     .setVersion('1.0')
-    .addTag('ProgressTracker')
+    .addTag('AuditLog')
     .addBearerAuth(
       {
         type: 'http',

@@ -8,8 +8,8 @@ import {
 import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { AuditLogEntity } from 'src/audit-log/entities/audit-log.entity/audit-log.schema';
-import { AuditLogRepository } from 'src/audit-log/repositories/audit-log.repository';
+import { AuditLog } from 'src/audit-log/entities/audit-log.entity/audit-log.schema';
+import { AuditLogRepository } from 'src/audit-log/repositories/user.repository';
 import { AUDIT_LOG_DATA } from 'src/common/decorators/audit-log.decorator';
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 
@@ -36,10 +36,13 @@ export class AuditLogger implements NestInterceptor {
         if (!auditLog) {
           return;
         }
+
+        console.log(auditLog);
+
         const request = context.switchToHttp().getRequest();
         const userId = request.user ? request.user.id : null;
 
-        const data: QueryDeepPartialEntity<AuditLogEntity> = {
+        const data: QueryDeepPartialEntity<AuditLog> = {
           action: auditLog,
           userId: userId,
           details: JSON.stringify({
